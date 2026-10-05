@@ -16,11 +16,7 @@
  * closing recap, which is a ruled ledger: the two are deliberately different
  * forms so the recap reads as a summing-up rather than as a repeat.
  *
- * ⚠️ NO COVER ART EXISTS for the challenge or the three resources, so these are
- * typographic cards carrying an ordinal, an icon and a value rather than
- * mock-up shots. When covers land they slot in above each title at a single
- * shared ratio, and the grid handles them without any other change. Giving
- * them different ratios is what tiles four cards at four heights.
+ * Every card carries 4:3 art: the day cards on the lead, a cover on each resource.
  */
 import type { Icon } from '@phosphor-icons/react';
 import {
@@ -34,7 +30,8 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 
 import { legoBrick, legoDelay } from './lego-style';
-import { C, SectionEyebrow } from './shared';
+import { asset } from './asset-version';
+import { Art, C, SectionEyebrow } from './shared';
 
 const LEAD = {
   n: '01',
@@ -45,10 +42,11 @@ const LEAD = {
   tag: 'LIVE ACCESS · INCLUDED',
 };
 
-const BONUSES: { n: string; title: string; icon: Icon; value: string; body: string }[] = [
+const BONUSES: { n: string; title: string; icon: Icon; value: string; body: string; cover: string }[] = [
   {
     n: '02',
     title: '5 Curated Musical Tracks for Positivity',
+    cover: '/system/bonus-musical-tracks.webp',
     icon: Playlist,
     value: '(₹997 Value)',
     body: 'A ready-to-use collection of 5 carefully curated music tracks designed to help you experience how music can be used more intentionally for positivity and wellbeing in everyday life.',
@@ -56,6 +54,7 @@ const BONUSES: { n: string; title: string; icon: Icon; value: string; body: stri
   {
     n: '03',
     title: 'Daily Musical Routine Plan',
+    cover: '/system/bonus-daily-routine-plan.webp',
     icon: SunHorizon,
     value: '(₹797 Value)',
     body: 'A simple daily guide to help you understand when and how to use music more purposefully across your day, so you can begin applying what you learn beyond the live sessions.',
@@ -63,6 +62,7 @@ const BONUSES: { n: string; title: string; icon: Icon; value: string; body: stri
   {
     n: '04',
     title: 'Music Therapy Monetisation Blueprint',
+    cover: '/system/bonus-monetisation-blueprint.webp',
     icon: MusicNotes,
     value: '(₹997 Value)',
     body: 'A practical roadmap to explore music therapy as a second career, additional income stream or meaningful post-retirement practice.',
@@ -162,6 +162,14 @@ export default function Toolkit() {
                 <AccessTag text={LEAD.tag} icon="live" />
               </div>
             </div>
+
+            <Art
+              src={asset('/system/five-day-cards.webp')}
+              alt="The five day cards of the challenge"
+              ratio="4 / 3"
+              sizes="(min-width: 640px) 240px, 100vw"
+              className="w-full sm:w-[240px] sm:shrink-0"
+            />
           </div>
         </article>
 
@@ -188,8 +196,14 @@ export default function Toolkit() {
                   border: `1px solid ${C.line}`,
                 }}
               >
-                {/* Cover art, when it exists, goes here: above this row, at the
-                    same ratio for all three. */}
+                {/* One shared ratio, so the three cards stay level. */}
+                <Art
+                  src={asset(b.cover)}
+                  alt={`${b.title} cover`}
+                  ratio="4 / 3"
+                  sizes="(min-width: 1024px) 340px, (min-width: 640px) 50vw, 100vw"
+                  className="mb-6"
+                />
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
                     <IconBed icon={b.icon} />

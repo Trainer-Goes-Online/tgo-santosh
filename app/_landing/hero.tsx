@@ -133,22 +133,12 @@ export function AnnouncementBar() {
 /* ══ 1 · Hero ══════════════════════════════════════════════════════════════ */
 
 /**
- * The mobile client banner.
- *
- * ⚠️ `src` IS NULL: no banner artwork has been supplied and nothing exists
- * under /public. The slot renders a labelled MediaPlaceholder at `ratio` until
- * it does, so the reserved space is identical in both states and the headline
- * above it never jumps.
- *
- * To go live: export the banner at 16:9, save it to
- * public/banner/santosh-banner.png, and set `src` to '/banner/santosh-banner.png'.
- * It goes through asset() at the call site. If the supplied file is NOT 16:9,
- * change `ratio` to the file's own dimensions in the same edit: object-cover in
- * a mismatched box crops, and a banner is usually carrying type.
+ * The mobile client banner. `ratio` must match the file's own dimensions:
+ * object-cover in a mismatched box crops, and a banner is usually carrying type.
  */
 const BANNER: { src: string | null; ratio: string; alt: string } = {
-  src: null,
-  ratio: '16 / 9',
+  src: '/system/offer-stack.webp',
+  ratio: '4 / 3',
   alt: 'Santosh Ghatpande · 5-Day Music Therapy Practitioner Challenge',
 };
 
@@ -237,16 +227,6 @@ export function Hero() {
                 (see the wrapper above), so the banner has to persist through
                 the whole single-column range or a tablet gets the wall of type
                 the phone had. Read from the wrapper, not assumed.
-
-                ⚠️ NO BANNER ARTWORK HAS BEEN SUPPLIED and nothing exists under
-                /public, so the slot holds a labelled placeholder at the ratio
-                reserved for the real file. Drop the artwork at
-                public/banner/santosh-banner.png and set BANNER.src below; the
-                path goes through asset() like every other /public reference.
-                16/9 is the reserved ratio, matched to the reference build's own
-                banner, so the file has to be exported at 16:9 or the ratio here
-                changes with it. Declaring it is what reserves the space before
-                the bytes land, so the headline above does not jump.
 
                 `sizes="100vw"` because in this range it genuinely is the full
                 width, and NO `priority`: the LCP candidate on a phone is the
@@ -355,8 +335,7 @@ export function Hero() {
 
               The floor ramp has warmed by the time it reaches the card, and
               the card keeps the strong hairline, the saffron ring and the drop
-              shadow. When a founder clip or an offer-stack still lands it slots
-              in above the eyebrow and nothing else changes. */}
+              shadow. The offer-stack image sits above the eyebrow. */}
           <div>
             <div
               data-lego=""
@@ -373,6 +352,13 @@ export function Hero() {
                   '0 0 0 8px rgba(253,147,9,0.12), 0 28px 60px -34px rgba(48,68,67,0.42)',
               }}
             >
+              <Art
+                src={asset('/system/offer-stack.webp')}
+                alt="Santosh with the 5 day cards and the 3 resources"
+                ratio="4 / 3"
+                sizes="(min-width: 1024px) 460px, 100vw"
+                className="mb-6"
+              />
               <span
                 className="inline-flex items-center rounded-full px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.18em]"
                 style={{ background: C.goldPale, color: C.goldInk }}

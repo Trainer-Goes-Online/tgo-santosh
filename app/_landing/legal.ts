@@ -19,7 +19,7 @@ export const LEGAL = {
   /** ⚠️ The LEGAL person: the proprietor's name, or the Pvt Ltd / LLP name as
    *  registered. This is what has to match the PAN and the Razorpay merchant
    *  record. */
-  entity: '[TODO: registered legal entity]',
+  entity: 'Anahat Transformations LLP',
   /** The name the BUYER recognises. Two fields, never one: collapsing them gets
    *  one of the two audiences wrong. */
   tradeName: 'Anahat Music Therapy',
@@ -35,22 +35,21 @@ export const LEGAL = {
 
      To fill it, use the phrase as it should READ in a sentence, lower case:
      'sole proprietor', 'a partnership firm', 'a private limited company'. */
-  structure: '',
-  /** ⚠️ Full registered address including PIN. */
-  address: '[TODO: registered business address]',
-  /** ⚠️ A monitored number, in the form it should be read as. */
-  phone: '[TODO: support phone]',
-  /** ⚠️ The same number, digits and + only, for the tel: href. Leave EMPTY
-   *  rather than half-filled: a tel: link to a placeholder dials nothing. */
-  phoneHref: '',
-  /** ⚠️ Refund and data requests land here. Must be a real monitored inbox. */
-  email: '[TODO: support email]',
+  structure: 'a limited liability partnership',
+  /** Full registered address including PIN. */
+  address: 'F No 5/6 Latakunj Apts Chintamani Soc Karvenagar Pune 411052, Maharashtra',
+  /** A monitored number, in the form it should be read as. */
+  phone: '8010891765',
+  /** The same number, digits and + only, for the tel: href. */
+  phoneHref: '+918010891765',
+  /** Refund and data requests land here. Must be a real monitored inbox. */
+  email: 'listen@anahatmusictherapy.com',
   /** ⚠️ The seat of the district court covering the registered address. Confirm
    *  rather than infer: the client may prefer a specific forum. */
-  jurisdiction: '[TODO: jurisdiction]',
+  jurisdiction: 'Pune, Maharashtra',
   /** ⚠️ The date the policies are published under. A policy dated before it was
    *  published is the kind of detail a dispute picks at. */
-  effectiveDate: '[TODO: effective date]',
+  effectiveDate: '5 October 2026',
 
   /* ── this client's, verbatim from the copy source ───────────────────────── */
   brand: 'Anahat Music Therapy',
