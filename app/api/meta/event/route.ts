@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { CHECKOUT_CONFIG, capiReady } from '@/lib/checkout-config';
+import { CHECKOUT_CONFIG, capiMissing, capiReady } from '@/lib/checkout-config';
 import {
   sendCapiEvent,
   sha256Hex,
@@ -39,6 +39,7 @@ const OCCUPATIONS: Occupation[] = ['working_professional', 'homemaker'];
 
 export async function POST(req: Request) {
   if (!capiReady()) {
+    console.warn(`[meta-event] CAPI not configured, event skipped. Missing env: ${capiMissing()}`);
     return NextResponse.json({ ok: false, reason: 'capi-not-configured' });
   }
 

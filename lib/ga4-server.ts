@@ -57,6 +57,9 @@ export async function sendGa4Purchase(params: {
     ],
   };
 
+  const tag = `[ga4-mp] purchase transaction_id=${params.transactionId}`;
+  console.log(`${tag} REQUEST body=${JSON.stringify(body)}`);
+
   try {
     const res = await fetch(
       `${ENDPOINT}?measurement_id=${measurementId}&api_secret=${apiSecret}`,
@@ -67,8 +70,10 @@ export async function sendGa4Purchase(params: {
       },
     );
     // The MP endpoint returns 204 with no body on success.
+    console.log(`${tag} RESPONSE ok=${res.ok} status=${res.status}`);
     return { ok: res.ok, status: res.status };
-  } catch {
+  } catch (e) {
+    console.error(`${tag} FAILED network error: ${String(e)}`);
     return { ok: false, status: 0 };
   }
 }

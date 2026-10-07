@@ -70,6 +70,15 @@ export const CHECKOUT_CONFIG = {
 export const capiReady = () =>
   Boolean(CHECKOUT_CONFIG.meta.pixelId && CHECKOUT_CONFIG.meta.accessToken);
 
+/** Names the env vars that keep capiReady() false, for the skip log lines. */
+export const capiMissing = () =>
+  [
+    !CHECKOUT_CONFIG.meta.pixelId && 'META_PIXEL_ID',
+    !CHECKOUT_CONFIG.meta.accessToken && 'META_CAPI_ACCESS_TOKEN',
+  ]
+    .filter(Boolean)
+    .join(', ');
+
 /**
  * Whether this deployment is transacting in test mode, derived rather than
  * declared.

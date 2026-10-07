@@ -79,15 +79,14 @@ export async function sendPabblyPurchase(
   p: PabblyPurchase,
 ): Promise<{ ok: boolean; status: number }> {
   const url = process.env.PABBLY_WEBHOOK_URL ?? '';
-  if (!url) return { ok: false, status: 0 };
+  if (!url) {
+    console.warn('[pabbly] PABBLY_WEBHOOK_URL not set, hand-off skipped');
+    return { ok: false, status: 0 };
+  }
 
-  try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      /* Flat keys, no nesting: Pabbly maps fields one level deep, and a nested
-         object arrives as an unusable blob in the step mapper. */
-      body: JSON.stringify({
+  /* Flat keys, no nesting: Pabbly maps fields one level deep, and a nested
+     object arrives as an unusable blob in the step mapper. */
+  const payload = {
         lead_id: s(p.leadId),
         created_at: s(p.createdAt),
         first_name: s(p.firstName),
@@ -133,10 +132,26 @@ export async function sendPabblyPurchase(
         currency: s(p.currency),
         product: s(p.product),
         occupation: s(p.occupation),
-      }),
+  };
+
+  /* Full payload, unhashed, exactly as posted. The webhook url itself is not
+     logged: it is the credential for the workflow. */
+  const tag = `[pabbly] payment_id=${payload.payment_id}`;
+  console.log(`${tag} REQUEST body=${JSON.stringify(payload)}`);
+
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(payload),
     });
+    const resText = await res.text().catch(() => '');
+    console.log(
+      `${tag} RESPONSE ok=${res.ok} status=${res.status} body=${resText.slice(0, 500)}`,
+    );
     return { ok: res.ok, status: res.status };
-  } catch {
+  } catch (e) {
+    console.error(`${tag} FAILED network error: ${String(e)}`);
     return { ok: false, status: 0 };
   }
 }

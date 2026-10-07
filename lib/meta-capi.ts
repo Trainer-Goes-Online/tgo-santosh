@@ -212,6 +212,14 @@ export async function sendCapiEvent(params: {
     ...(params.testEventCode && { test_event_code: params.testEventCode }),
   };
 
+  /* Full outbound payload, logged verbatim. user_data is already hashed by
+     buildUserData, so this is exactly what Meta receives. The access token
+     travels in the url, never in the body, and is not logged. */
+  const tag = `[meta-capi] ${params.eventName} event_id=${params.eventId}`;
+  console.log(
+    `${tag} REQUEST pixel=${params.pixelId} body=${JSON.stringify(body)}`,
+  );
+
   try {
     const res = await fetch(
       `https://graph.facebook.com/v21.0/${params.pixelId}/events?access_token=${params.accessToken}`,
@@ -221,8 +229,13 @@ export async function sendCapiEvent(params: {
         body: JSON.stringify(body),
       },
     );
-    return { ok: res.ok, status: res.status, body: await res.json() };
+    const resBody = await res.json().catch(() => null);
+    console.log(
+      `${tag} RESPONSE ok=${res.ok} status=${res.status} body=${JSON.stringify(resBody)}`,
+    );
+    return { ok: res.ok, status: res.status, body: resBody };
   } catch (e) {
+    console.error(`${tag} FAILED network error: ${String(e)}`);
     return { ok: false, status: 0, body: String(e) };
   }
 }
