@@ -353,9 +353,9 @@ export function Hero() {
               }}
             >
               <Art
-                src={asset('/system/offer-stack.webp')}
+                src={asset('/system/offer-stack-animated.webp')}
                 alt="Santosh with the 5 day cards and the 3 resources"
-                ratio="4 / 3"
+                ratio="1 / 1"
                 sizes="(min-width: 1024px) 460px, 100vw"
                 className="mb-6"
               />
