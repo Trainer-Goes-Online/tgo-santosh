@@ -2,7 +2,7 @@ import crypto from 'crypto';
 
 import { NextResponse } from 'next/server';
 
-import { CHECKOUT_CONFIG, capiReady, isTestMode } from '@/lib/checkout-config';
+import { CHECKOUT_CONFIG, capiMissing, capiReady, isTestMode } from '@/lib/checkout-config';
 import { ga4ServerReady, sendGa4Purchase } from '@/lib/ga4-server';
 import { sendCapiEvent, type Occupation } from '@/lib/meta-capi';
 import { readOrderContext } from '@/lib/order-notes';
@@ -195,7 +195,9 @@ export async function POST(req: Request) {
     : { ok: false, status: 0 };
 
   if (!capiReady()) {
-    console.warn('[rzp-webhook] CAPI not configured, Meta Purchase not sent');
+    console.warn(
+      `[rzp-webhook] ${paymentId} CAPI not configured, Meta Purchase not sent. Missing env: ${capiMissing()}`,
+    );
     return NextResponse.json({
       ok: true,
       capi: 'skipped',
