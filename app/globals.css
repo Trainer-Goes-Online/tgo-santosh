@@ -80,6 +80,18 @@ h1 {
 .kz-accent {
   color: var(--gold-deep);
 }
+
+/* A key phrase set inside a solid oxblood box. */
+.kz-boxword {
+  display: inline-block;
+  background: var(--gold-deep);
+  color: #ffffff;
+  font-weight: 600;
+  line-height: 1.25;
+  padding: 0.04em 0.4em 0.08em;
+  margin: 0.08em 0;
+  border-radius: 6px;
+}
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
   .kz-accent {
     background-image: linear-gradient(100deg, #4a0008 0%, #4a0008 66%, #83007d 100%);

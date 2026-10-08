@@ -208,8 +208,10 @@ export function Hero() {
                 className="mt-4 block text-[21px] font-normal leading-[1.35] sm:text-[24px] lg:text-[26px]"
                 style={{ color: C.inkSoft }}
               >
-                In Just 5 Days, Even If You&apos;ve Never Studied Psychology,
-                Medicine Or Music Professionally
+                In Just <strong className="font-bold" style={{ color: C.ink }}>5 Days</strong>, Even If You&apos;ve
+                Never Studied <mark className="kz-boxword">Psychology</mark>,{' '}
+                <mark className="kz-boxword">Medicine</mark> Or{' '}
+                <mark className="kz-boxword">Music Professionally</mark>
               </span>
             </h1>
 
