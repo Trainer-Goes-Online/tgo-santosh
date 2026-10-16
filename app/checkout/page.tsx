@@ -6,7 +6,7 @@
  * Built to the same pattern as the ankita-postpartum checkout, which is the
  * house standard for challenge funnels: header with a way back, a centred
  * masthead, then a two-column body with the form on the left and a STICKY order
- * summary on the right that collapses into a tap-to-open accordion on a phone.
+ * summary on the right that becomes a compact card above the form on a phone.
  *
  * It imports the landing page's tokens instead of redeclaring them, so the two
  * pages cannot drift apart.
@@ -69,7 +69,7 @@ import {
   trackInitiateCheckout,
 } from '@/lib/track';
 
-import { C } from '../_landing/shared';
+import { C, CtaLabel } from '../_landing/shared';
 import {
   ADDONS,
   THANK_YOU_PATH,
@@ -392,16 +392,16 @@ export default function CheckoutPage() {
                 Your details
               </p>
               <h2
-                className="mt-2 font-display text-[20px] font-semibold leading-snug sm:text-[22px]"
+                className="mt-2 hidden font-display text-[20px] font-semibold leading-snug sm:text-[22px] lg:block"
                 style={{ color: C.ink }}
               >
                 Where should we send your seat?
               </h2>
-              <p className="mt-2 text-[12.5px] sm:text-[13px]" style={{ color: C.inkSoft }}>
+              <p className="mt-2 hidden text-[12.5px] sm:text-[13px] lg:block" style={{ color: C.inkSoft }}>
                 Your Zoom link, reminders and all three resources go to these.
               </p>
 
-              <div className="mt-6 flex flex-col gap-4">
+              <div className="mt-4 flex flex-col gap-4 lg:mt-6">
                 {/* First and last are separate fields, not one "Full name"
                     split on a space. Splitting guesses: it gives a two-word
                     surname to the first name, and a single-word entry no last
@@ -583,18 +583,7 @@ export default function CheckoutPage() {
                     can select, so the highlight would pass OVER the words
                     instead of behind them. */}
                 <span>
-                  {busy ? (
-                    'Taking you to payment…'
-                  ) : (
-                    <>
-                      Pay{' '}
-                      <s className="mr-1 font-semibold opacity-70 decoration-2">{inr(strikeTotal)}</s>
-                      <span key={pkg.totalRupees} className="total-bump">
-                        {inr(pkg.totalRupees)}
-                      </span>{' '}
-                      &amp; Book My Spot
-                    </>
-                  )}
+                  {busy ? 'Taking you to payment…' : <CtaLabel total={pkg.totalRupees} />}
                 </span>
               </button>
 
@@ -721,16 +710,7 @@ export default function CheckoutPage() {
             }}
           >
             <span>
-              {busy ? (
-                'Opening…'
-              ) : (
-                <>
-                  Book My Spot ·{' '}
-                  <span key={pkg.totalRupees} className="total-bump tabular-nums">
-                    {inr(pkg.totalRupees)}
-                  </span>
-                </>
-              )}
+              {busy ? 'Opening…' : <CtaLabel total={pkg.totalRupees} />}
             </span>
           </button>
           <p className="mt-1.5 text-center text-[11px] font-semibold" style={{ color: C.goldInk }}>
@@ -768,9 +748,8 @@ function Header() {
 /* ── Order summary. Ported from the ankita-postpartum checkout, which is the
       house standard. Same blocks in the same order: lead item, included list,
       subtotal / bonus value, the ruled Total, the method tile, then the
-      guarantee line. Accordion below lg, always open from lg up. ────────── */
+      guarantee line. Below lg: title, lead item, add-ons and guarantee line. */
 function OrderSummary({ pkg, strikeTotal }: { pkg: Package; strikeTotal: number }) {
-  const [open, setOpen] = useState(false);
   const [lead, ...bonuses] = RECAP;
   const bonusValue = VALUE_TOTAL - lead.value;
 
@@ -779,52 +758,20 @@ function OrderSummary({ pkg, strikeTotal }: { pkg: Package; strikeTotal: number 
       className="rounded-2xl p-5 sm:p-6"
       style={{ background: C.canvas, border: `1px solid ${C.line}` }}
     >
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        aria-expanded={open}
-        aria-controls="order-summary-details"
-        className="flex w-full items-center justify-between gap-3 text-left lg:pointer-events-none"
-      >
-        <span className="min-w-0">
-          <span
-            className="block text-[10.5px] font-bold uppercase tracking-[0.2em]"
-            style={{ color: C.goldInk }}
-          >
-            Order summary
-          </span>
-          <span
-            className="mt-2 block font-display text-[20px] font-semibold leading-snug sm:text-[22px]"
-            style={{ color: C.ink }}
-          >
-            The 5-Day Challenge, in full
-          </span>
-          <span className="mt-1 block text-[12px] lg:hidden" style={{ color: C.inkSoft }}>
-            {open ? 'Tap to hide details' : 'Tap to view what is included'}
-          </span>
+      <div>
+        <span
+          className="block text-[10.5px] font-bold uppercase tracking-[0.2em]"
+          style={{ color: C.goldInk }}
+        >
+          Order summary
         </span>
-        {/* Phones: the live total sits on the collapsed header, so the price
-            is visible before anything is opened. */}
-        <span className="flex shrink-0 items-center gap-2 lg:hidden">
-          <span
-            key={pkg.totalRupees}
-            className="total-bump font-display text-[18px] font-semibold tabular-nums"
-            style={{ color: C.goldDeep }}
-          >
-            {inr(pkg.totalRupees)}
-          </span>
-          <span
-            className="grid h-7 w-7 place-items-center rounded-full"
-            style={{ background: C.goldPale }}
-          >
-            <CaretDown
-              weight="bold"
-              className={`h-3.5 w-3.5 transition-transform ${open ? 'rotate-180' : ''}`}
-              style={{ color: C.goldInk }}
-            />
-          </span>
+        <span
+          className="mt-2 hidden font-display text-[20px] font-semibold leading-snug sm:text-[22px] lg:block"
+          style={{ color: C.ink }}
+        >
+          The 5-Day Challenge, in full
         </span>
-      </button>
+      </div>
 
       {/* Lead item, always visible: it is the thing being bought. */}
       <div
@@ -897,7 +844,7 @@ function OrderSummary({ pkg, strikeTotal }: { pkg: Package; strikeTotal: number 
         </div>
       ))}
 
-      <div id="order-summary-details" className={`${open ? 'block' : 'hidden'} lg:block`}>
+      <div className="hidden lg:block">
         <div className="mt-4 space-y-1.5">
           <p
             className="text-[10.5px] font-bold uppercase tracking-[0.16em]"
@@ -949,11 +896,11 @@ function OrderSummary({ pkg, strikeTotal }: { pkg: Package; strikeTotal: number 
         </div>
       </div>
 
-      <div className="my-4 h-px" style={{ background: C.line }} />
+      <div className="my-4 hidden h-px lg:block" style={{ background: C.line }} />
 
       {/* The ruled Total. Gold appears here and nowhere else on the page. */}
       <div
-        className="flex items-baseline justify-between gap-3 rounded-2xl px-4 py-3.5"
+        className="hidden items-baseline justify-between gap-3 rounded-2xl px-4 py-3.5 lg:flex"
         style={{ background: C.goldWash, border: `1px solid ${C.lineStrong}` }}
       >
         <span
@@ -981,7 +928,7 @@ function OrderSummary({ pkg, strikeTotal }: { pkg: Package; strikeTotal: number 
 
       {/* Method */}
       <div
-        className="mt-5 flex items-start gap-3 rounded-2xl p-3"
+        className="mt-5 hidden items-start gap-3 rounded-2xl p-3 lg:flex"
         style={{ background: C.canvasAlt, border: `1px solid ${C.line}` }}
       >
         <CreditCard weight="duotone" className="h-5 w-5 shrink-0" style={{ color: C.goldInk }} />

@@ -87,6 +87,5 @@ export const CHECKOUT_HREF = '/checkout';
 /** The CTA label and its reassurance line. */
 export const CTA_LABEL = `Start Your 5-Day Music Therapy Challenge · ${DISCOUNT_PCT}% Off Today`;
 export const CTA_NOTE = 'Join Risk-Free · 100% Money-Back Guarantee';
-/** The sticky offer card and the Option 2 card carry their own labels. */
-export const CTA_LABEL_STICKY = 'Reserve My Spot';
+/** The Option 2 card carries its own label. */
 export const CTA_LABEL_OPTION = `Take Action · ${DISCOUNT_PCT}% Off Today`;

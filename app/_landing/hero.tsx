@@ -33,9 +33,8 @@ import { asset } from './asset-version';
 import { legoBrick, legoDelay } from './lego-style';
 import {
   CHECKOUT_HREF,
-  CTA_LABEL,
-  CTA_LABEL_STICKY,
   CTA_NOTE,
+  DISCOUNT_PCT,
   PRICE,
   PRODUCT_NAME,
   RECOGNITION_YEAR,
@@ -46,6 +45,8 @@ import {
   YEARS_IN_FIELD,
 } from './offer';
 import { Art, C, MediaPlaceholder } from './shared';
+
+const HERO_CTA_LABEL = `Book My Seat Now - ${DISCOUNT_PCT}% Off Today!`;
 
 /* ══ 0 · Announcement strip ════════════════════════════════════════════════
    A slim strip with one live saffron dot and a slow shine, so it reads as
@@ -275,7 +276,7 @@ export function Hero() {
                 }}
               >
                 <span className="inline-flex items-center gap-2.5">
-                  {CTA_LABEL}
+                  {HERO_CTA_LABEL}
                   <ArrowRight
                     weight="bold"
                     className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5"
@@ -402,7 +403,7 @@ export function Hero() {
                 }}
               >
                 <span className="inline-flex items-center gap-2.5">
-                  {CTA_LABEL_STICKY}
+                  {HERO_CTA_LABEL}
                   <ArrowRight
                     weight="bold"
                     className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
