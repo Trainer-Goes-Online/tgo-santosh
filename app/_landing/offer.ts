@@ -47,6 +47,23 @@ const RAW_START_AT = process.env.NEXT_PUBLIC_START_AT?.trim() ?? '';
 export const START_AT = RAW_START_AT && !Number.isNaN(Date.parse(RAW_START_AT))
   ? RAW_START_AT
   : '2026-10-21T06:00:00+05:30';
+
+/* The start time on its own, read off START_AT in India time and written in
+   the page's style: "6AM", or "6:30AM" when there are minutes. Pinned to
+   Asia/Kolkata so the server render and the visitor's browser always agree,
+   whatever timezone the visitor is in. */
+export const START_TIME = (() => {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Kolkata',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  }).formatToParts(new Date(START_AT));
+  const get = (type: string) => parts.find((p) => p.type === type)?.value ?? '';
+  const minute = get('minute');
+  return `${get('hour')}${minute && minute !== '00' ? `:${minute}` : ''}${get('dayPeriod').toUpperCase()}`;
+})();
+
 export const SESSION_TIMES = '6AM & 7PM';
 
 export const PRODUCT_NAME = '5-Day Music Therapy Practitioner Challenge';

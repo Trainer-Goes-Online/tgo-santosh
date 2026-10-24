@@ -40,6 +40,7 @@ import {
   RECOGNITION_YEAR,
   SESSION_TIMES,
   START_DATE,
+  START_TIME,
   STRIKE_PRICE,
   STUDENTS_TRAINED,
   YEARS_IN_FIELD,
@@ -139,7 +140,8 @@ const BANNER: { src: string | null; ratio: string; alt: string } = {
 
 const HERO_FACTS = [
   { icon: CalendarBlank, text: `Starts ${START_DATE}` },
-  { icon: Clock, text: SESSION_TIMES },
+  /* One time, the first session's, read from NEXT_PUBLIC_START_AT. */
+  { icon: Clock, text: START_TIME },
   { icon: VideoCamera, text: 'Live, Expert-Led Music Therapy Sessions' },
 ];
 
