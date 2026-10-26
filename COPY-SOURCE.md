@@ -9,7 +9,7 @@ Reproduce verbatim. Do not re-voice, shorten, reorder or drop to fit design.
 ## ANNOUNCEMENT BAR
 
 Special Offer: 5-Day Music Therapy Practitioner Challenge for ₹497 | Price Increases To ₹1799 Tomorrow
-| 100% Money-Back Guarantee | Live · Starts 21st October · 6AM  & 7PM
+| 100% Money-Back Guarantee | Live · Starts 21st October · 7PM
 
 ## HERO
 
@@ -24,7 +24,7 @@ Across 5 live sessions, you'll understand how music therapy works, practise real
 Start Your 5-Day Music Therapy Challenge · ₹497
 Join Risk-Free · 100% Money-Back Guarantee
 
-Starts 21st October             6AM & 7PM              Live, Expert-Led Music Therapy Sessions
+Starts 21st October             7PM              Live, Expert-Led Music Therapy Sessions
 
 ---
 
@@ -114,9 +114,9 @@ Bring all five days together and understand how a personalised music therapy pla
 
 ## SESSION TIMINGS + CTA
 
-Live Sessions, Twice A Day
-6AM & 7PM, live on Zoom.
-Pick whichever time fits your day.
+Live Sessions, Every Day
+Every day at 7PM, live on Zoom.
+One live session a day, for all 5 days.
 
 Start Your 5-Day Music Therapy Challenge · ₹497
 Join Risk-Free · 100% Money-Back Guarantee

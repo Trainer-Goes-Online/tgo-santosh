@@ -2,7 +2,7 @@
 
 Santosh Ghatpande · Anahat Music Therapy
 **5-Day Music Therapy Practitioner Challenge**, ₹497, live on Zoom, starts 21st
-October, 6AM and 7PM.
+October, one live session a day at 7PM.
 
 A CHALLENGE funnel: landing page, checkout, thank-you, three legal pages,
 Razorpay, Meta CAPI, GA4, Microsoft Clarity and the Pabbly fulfilment hand-off.

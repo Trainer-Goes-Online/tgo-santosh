@@ -326,8 +326,8 @@ function Schedule() {
   );
 }
 
-/* ══ 5 · Live Sessions, Twice A Day ════════════════════════════════════════
-   A CTA band, not a section with a structure: two timings and a click. It is a
+/* ══ 5 · Live Sessions, Every Day ════════════════════════════════════════
+   A CTA band, not a section with a structure: one time and a click. It is a
    dark CARD inside a light band, which is the only way dark is allowed on this
    page now that the stage is light. There are exactly two such objects, this
    one and the Option 2 card. */
@@ -349,17 +349,17 @@ function SessionsBand() {
           style={{ border: '1px solid rgba(253,147,9,0.5)', color: C.gold }}
         >
           <Clock weight="bold" className="h-3 w-3" />
-          Live Sessions, Twice A Day
+          Live Sessions, Every Day
         </span>
 
         <h2
           className="mx-auto mt-6 max-w-[620px] font-display text-[clamp(30px,4.4vw,44px)] font-semibold leading-[1.12]"
           style={{ color: C.onDark }}
         >
-          {SESSION_TIMES}, <span style={{ color: C.gold }}>live on Zoom</span>.
+          Every day at {SESSION_TIMES}, <span style={{ color: C.gold }}>live on Zoom</span>.
         </h2>
         <p className="mt-3 text-[15.5px]" style={{ color: C.onDarkMute }}>
-          Pick whichever time fits your day.
+          One live session a day, for all 5 days.
         </p>
 
         <div className="mx-auto mt-8 flex max-w-[460px] flex-col items-center">

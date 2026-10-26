@@ -40,13 +40,13 @@ export const DISCOUNT_PCT = Math.floor(
    announcement bar, checkout, thank-you pages, the Pabbly challenge_date)
    moves together. Blank falls back, never renders an empty date. */
 export const START_DATE = process.env.NEXT_PUBLIC_START_DATE?.trim() || '21st October';
-/* The first session (6 AM IST on the start date), as an ISO timestamp. Drives
+/* The first session (7 PM IST on the start date), as an ISO timestamp. Drives
    the countdowns. Change it TOGETHER with NEXT_PUBLIC_START_DATE. An unparseable
    value falls back rather than rendering a NaN countdown. */
 const RAW_START_AT = process.env.NEXT_PUBLIC_START_AT?.trim() ?? '';
 export const START_AT = RAW_START_AT && !Number.isNaN(Date.parse(RAW_START_AT))
   ? RAW_START_AT
-  : '2026-10-21T06:00:00+05:30';
+  : '2026-10-21T19:00:00+05:30';
 
 /* The start time on its own, read off START_AT in India time and written in
    the page's style: "6AM", or "6:30AM" when there are minutes. Pinned to
@@ -64,7 +64,10 @@ export const START_TIME = (() => {
   return `${get('hour')}${minute && minute !== '00' ? `:${minute}` : ''}${get('dayPeriod').toUpperCase()}`;
 })();
 
-export const SESSION_TIMES = '6AM & 7PM';
+/* There is ONE live session a day, at the same time on all five days, so the
+   session time IS the start time and both come from NEXT_PUBLIC_START_AT.
+   Every "Starts … · 7PM" line moves with that one env value. */
+export const SESSION_TIMES = START_TIME;
 
 export const PRODUCT_NAME = '5-Day Music Therapy Practitioner Challenge';
 /** The GA4 item id. One slug, read by the browser tracker and by the webhook's

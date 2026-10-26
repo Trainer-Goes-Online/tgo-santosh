@@ -35,8 +35,8 @@ export default function TermsPage() {
       <h2>2. What you are buying</h2>
       <p>
         Access to the {LEGAL.product}: five live expert-led sessions delivered
-        on Zoom, starting {START_DATE}, with two session timings each day
-        ({SESSION_TIMES}), together with the digital resources listed at
+        on Zoom, starting {START_DATE}, with one session each day at
+        {SESSION_TIMES}, together with the digital resources listed at
         checkout. The fee is {PRICE}.
       </p>
 

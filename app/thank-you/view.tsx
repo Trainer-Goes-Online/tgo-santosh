@@ -231,9 +231,9 @@ function ThankYou({ addons }: { addons: AddonId[] }) {
             <DetailCard icon={CalendarBlank} label="Challenge starts" value={START_DATE} />
             <DetailCard
               icon={Clock}
-              label="Live session timings"
+              label="Live session time"
               value={SESSION_TIMES}
-              footnote="Pick whichever time fits your day"
+              footnote="Same time on all 5 days"
             />
           </div>
 

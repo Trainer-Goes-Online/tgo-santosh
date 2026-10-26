@@ -110,7 +110,7 @@ who cannot find them fails the account rather than writing to ask.
    HOUSE STANDARD, not Santosh's. Each is flagged at the constant in
    `app/thank-you/page.tsx`. Have him read them.
 5. **No session length is stated anywhere**, because the copy does not carry
-   one. The page says 6AM and 7PM and nothing about duration. If a buyer needs
+   one. The page says 7PM and nothing about duration. If a buyer needs
    to know, the copy has to say it.
 
 ---
